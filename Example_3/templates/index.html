@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajax and Flask Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#get-data').click(function() {
+                var name = $('#name').val();
+                var location = $('#location').val();
+                $.ajax({
+                    url: '/get_data',
+                    data: {'name': name, 'location': location},
+                    type: 'POST',
+                    success: function(response) {
+                        $('#result').text(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Ajax and Flask Example</h1>
+    <p>输入你的名字和位置，并点击“提交”按钮：</p>
+    <label for="name">名字：</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="location">位置：</label>
+    <input type="text" id="location" name="location"><br><br>
+    <button id="get-data">提交</button><br><br>
+    <div id="result"></div>
+</body>
+</html>
